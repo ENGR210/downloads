@@ -8,7 +8,7 @@
 
 `timescale 1ns / 1ps
 
-// this debounces (for 10 clock cycles)
+// this debounces (for 100 clock cycles)
 // and synchronizes an incomming signal
 module debounce(
     input           clk,
@@ -18,8 +18,8 @@ module debounce(
     output logic    stable
     );
 
-    localparam DELAY_CYCLES = 10;
-    localparam CNT_BITS = $clog2( DELAY_CYCLES + 1);
+    localparam DELAY_CYCLES = 100; // 1uS
+    localparam CNT_BITS = $clog2( DELAY_CYCLES );
     logic [CNT_BITS-1:0] cnt, nextCnt;
 
     always_ff @(posedge clk) begin
